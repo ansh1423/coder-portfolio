@@ -1,0 +1,223 @@
+// 1star and 2star
+$star1-offset-color-1: #ffc5ab;
+$star1-offset-color-2: #ffa38a;
+// 3star and 4star
+$star2-offset-color-1: #cee3eb;
+$star2-offset-color-2: #aec8c7;
+// 5star and 6star
+$star3-offset-color-1: #f8bc36;
+$star3-offset-color-2: #f9d641;
+// linear gradient
+
+@mixin badge-color-linear-gradient($color1, $color2) {
+  background: linear-gradient($color1, $color2);
+}
+
+.hr-badge {
+  width: 11rem;
+  margin: 4rem 1rem;
+  position: relative;
+  filter: url("../assets/svg/badge-filter.svg#goo");
+
+  &:before {
+	  content: "";
+    position: absolute;
+    top: -2rem;
+    left: 0rem;
+    display: block;
+    width: 100%;
+    padding-top: 120%;
+    border-radius: inherit;
+    clip-path: polygon(0% 25%,0% 75%,50% 100%,100% 75%,100% 25%,50% 0%);  
+  }
+
+  &--1star,
+  &--2star {
+    &:before {
+		@include badge-color-linear-gradient(
+			$star1-offset-color-1,
+			$star1-offset-color-2
+		);
+    }
+  }
+
+  &--3star,
+  &--4star {
+    &:before {
+		@include badge-color-linear-gradient(
+			$star2-offset-color-1,
+			$star2-offset-color-2
+		);
+    }
+  }
+
+  &--5star,
+  &--6star {
+    &:before {
+		@include badge-color-linear-gradient(
+			$star3-offset-color-1,
+			$star3-offset-color-2
+		);
+    }
+  }
+
+  &__image {
+    @include flex;
+
+    width: 3rem;
+    height: 3rem;
+    left: 35%;
+    top: -10%;
+    position: relative;
+    fill: $black;
+  }
+
+  &__title {
+    @include flex;
+    @include justify-c;
+
+    position: relative;
+    font-size: 1rem;
+    word-break: keep-all;
+    bottom: 0;
+    font-weight: 600;
+    font-family: "Open Sans", sans-serif;
+    color: #39424e;
+    margin-top: 1rem;
+  }
+
+  &__stars {
+    @include flex;
+    @include justify-c;
+    position: relative;
+  }
+
+  &__star {
+    background: url("../assets/svg/badge-star.svg");
+    width: 1rem;
+    height: 1rem;
+    color: #39424e;
+    margin-left: 0.2rem;
+  }
+}
+
+.hr-certificate {
+  min-width: 100px;
+  width: 12rem;
+  margin-right: 1.5rem;
+  margin-top: 1.5rem;
+
+  &__container {
+    padding-top: 133.33%;
+    min-width: 100px;
+    width: 100%;
+    position: relative;
+    background-color: #1ba94c;
+    box-shadow: -6px 6px 10px 0 rgb(0 0 0 / 20%);
+
+    &:before {
+      filter: brightness(1000%);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("../assets/svg/hr-certi-badge.svg") transparent no-repeat
+        10% 10%;
+      background-size: 17.5%;
+      content: "";
+    }
+  }
+
+  &--folded-corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+    padding-top: 35%;
+    width: 35%;
+    height: 0;
+
+    &:before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #32c766;
+      content: "";
+      transform: rotate(45deg) scale(1.5) translateY(50%);
+    }
+  }
+
+  &__content {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    justify-content: space-between;
+    padding: 10%;
+    height: 60%;
+  }
+
+  &__heading {
+    margin: 0;
+    color: $white;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    letter-spacing: -0.06rem;
+  }
+}
+
+.hr-section-card {
+  &__header {
+    @include flex;
+    @include align-c;
+
+    margin-left: -5px;
+    &--certificates {
+      width: 2rem;
+      height: 2rem;
+      margin-right: 1rem;
+      background: url("../assets/svg/certificates-section-header.svg");
+    }
+
+    &--badges {
+      width: 2rem;
+      height: 3rem;
+      margin-right: 1rem;
+      background: url("../assets/svg/badges-section-header.svg");
+    }
+
+    &--work-experience {
+      width: 2rem;
+      height: 2rem;
+      margin-right: 1rem;
+      background: url("../assets/svg/work-experience-section-header.svg");
+    }
+
+    &--education {
+      width: 2rem;
+      height: 2rem;
+      margin-right: 1rem;
+      background: url("../assets/svg/education-section-header.svg");
+    }
+  }
+
+  &__icon {
+    position: relative;
+    top: -1px;
+    margin: 5px 10px 0 0;
+    color: $color-shade-dark;
+    font-size: 18px;
+  }
+
+  &__heading {
+    color: $color-text-medium-dark;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.4;
+  }
+}
